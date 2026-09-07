@@ -14,5 +14,6 @@ teams prioritize responses automatically.
 - Google Gemini API (AI classification)
 
 ## Status
-Fully functional: receives live messages via webhook, classifies urgency using Gemini AI, 
-and returns the result automatically.
+Complete and fully functional. Receives live messages via webhook, classifies urgency 
+using Google Gemini AI, and returns the classification as an automated response — 
+tested end-to-end.
