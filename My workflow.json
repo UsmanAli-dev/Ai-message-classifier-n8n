@@ -1,0 +1,96 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Classify this message as either 'Urgent' or 'Normal'. Reply with only one word: {{ $json.body.message }}",
+        "messages": {
+          "messageValues": []
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        224,
+        0
+      ],
+      "id": "c0c292f6-86af-43eb-a94f-da2ec5b2c9c0",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        208
+      ],
+      "id": "78eafb08-a8db-48f7-a8dd-cf607345ffdc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "J3jvy5RIbh4v5115",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "classify-message",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "54e6ef17-b96b-44b0-a1ed-773da8a546d6",
+      "name": "Webhook",
+      "webhookId": "422ab397-97f5-45ee-9c54-67782a480a5a"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "bebb1c6f-ae99-4dca-8e9a-34eab4a3d156",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cd27395d2a6b78ff1cb14ad36cadff201f47bce9baa4215e5a5015bb738c87eb"
+  },
+  "nodeGroups": [],
+  "id": "JwdrzO4w5orX7pY0",
+  "tags": []
+}
