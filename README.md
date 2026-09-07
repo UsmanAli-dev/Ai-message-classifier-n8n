@@ -14,5 +14,5 @@ teams prioritize responses automatically.
 - Google Gemini API (AI classification)
 
 ## Status
-Early-stage learning project — actively being expanded to include real 
-triggers (webhooks) and automated notifications (Slack/email).
+Fully functional: receives live messages via webhook, classifies urgency using Gemini AI, 
+and returns the result automatically.
